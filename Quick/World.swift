@@ -38,6 +38,13 @@ public typealias SharedExampleClosure = (SharedExampleContext) -> ()
     */
 
     internal var currentExampleMetadata: ExampleMetadata?
+    
+    /**
+        The currently executing spec. Gives examples access to XCTestCase instance methods
+        via QuickSpec.current().
+    */
+    
+    internal var currentSpec: QuickSpec?
 
     /**
         A flag that indicates whether additional test suites are being run

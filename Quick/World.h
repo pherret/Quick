@@ -1,5 +1,6 @@
 #import <Quick/Quick-Swift.h>
 
+@class QuickSpec;
 @class ExampleGroup;
 @class ExampleMetadata;
 
@@ -8,6 +9,7 @@ SWIFT_CLASS("_TtC5Quick5World")
 
 @property (nonatomic) ExampleGroup * __nullable currentExampleGroup;
 @property (nonatomic) ExampleMetadata * __nullable currentExampleMetadata;
+@property (nonatomic) QuickSpec * __nullable currentSpec;
 @property (nonatomic) BOOL isRunningAdditionalSuites;
 + (World * __nonnull)sharedWorld;
 - (void)configure:(void (^ __nonnull)(Configuration * __nonnull))closure;

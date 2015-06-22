@@ -45,4 +45,6 @@
  */
 - (void)spec;
 
++ (__nonnull QuickSpec*)current;
+
 @end

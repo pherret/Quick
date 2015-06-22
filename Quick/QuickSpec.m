@@ -78,6 +78,13 @@ const void * const QCKExampleKey = &QCKExampleKey;
 
 - (void)spec { }
 
++ (QuickSpec*)current {
+    World *world = [World sharedWorld];
+    QuickSpec *current = world.currentSpec;
+    NSAssert(current != nil, @"No QuickSpec is currently running");
+    return current;
+}
+
 #pragma mark - Internal Methods
 
 /**
@@ -98,7 +105,7 @@ const void * const QCKExampleKey = &QCKExampleKey;
  */
 + (SEL)addInstanceMethodForExample:(Example *)example {
     IMP implementation = imp_implementationWithBlock(^(id self){
-        [example run];
+        [example runWithSpec:self];
     });
     const char *types = [[NSString stringWithFormat:@"%s%s%s", @encode(id), @encode(id), @encode(SEL)] UTF8String];
     SEL selector = NSSelectorFromString(example.name.qck_selectorName);

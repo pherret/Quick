@@ -50,9 +50,14 @@ private var numberOfExamplesRun = 0
         Executes the example closure, as well as all before and after
         closures defined in the its surrounding example groups.
     */
-    public func run() {
+    public func run(spec spec: QuickSpec?) {
         let world = World.sharedWorld()
-
+        
+        world.currentSpec = spec
+        defer {
+            world.currentSpec = nil
+        }
+        
         if numberOfExamplesRun == 0 {
             world.suiteHooks.executeBefores()
         }
@@ -78,7 +83,15 @@ private var numberOfExamplesRun = 0
             world.suiteHooks.executeAfters()
         }
     }
-
+    
+    /**
+        Executes the example closure without an associated QuickSpec instance.
+        Calls to QuickSpec.current() will fail.
+    */
+    public func run() {
+        run(spec: nil)
+    }
+    
     /**
         Evaluates the filter flags set on this example and on the example groups
         this example belongs to. Flags set on the example are trumped by flags on
