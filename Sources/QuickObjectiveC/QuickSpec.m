@@ -85,6 +85,10 @@ const void * const QCKExampleKey = &QCKExampleKey;
 
 - (void)spec { }
 
++ (QuickSpec*) current {
+    return currentSpec;
+}
+
 #pragma mark - Internal Methods
 
 /**
